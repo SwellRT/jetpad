@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  swellrt: {
+    url: 'http://localhost:9898/swellrt_beta/swellrt_beta.nocache.js'
+  }
 };
 
 /*
