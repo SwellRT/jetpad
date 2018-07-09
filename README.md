@@ -30,20 +30,30 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## SwellRT
 
 SwellRT client is loaded according to the current environment configuration. Check out
-the `environments/environment.*` files for
-more info.
+`environments/environment.*` files for more info.
 
-The angular code will load only after the
-SwellRT JS library is sucessfully loaded. See
+The angular code is load only after SwellRT JS library is sucessfully loaded. See
 `main.ts` for further details.
 
 ## Other Dependencies
 
-Following node modules are used to provide UI components:
+For basic UI layout and custom UI components we use bootstrap 4.
+These are the NPM modules required. Script and style load is configured
+in `angular.json`
 
 ```
 npm i bootstrap
 npm i jquery
-npm i popper.js  // pop up library
+npm i popper.js  # pop up library
 ```
 
+In general, we follow Material Design UI framework using
+the components of Angular Material project:
+
+```
+npm install --save @angular/material @angular/cdk
+npm install --save @angular/animations
+npm install --save hammerjs # gestures support
+```
+
+Also material icons are used as external dependency.
