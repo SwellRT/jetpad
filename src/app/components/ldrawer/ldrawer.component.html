@@ -1,0 +1,12 @@
+
+
+<div *ngIf="session?.registered">
+  <h2>{{ session.profile.name }}</h2>
+  <p><a routerLink="/home">Home</a></p>  
+  <p><a (click)="logout()">Logout</a></p>
+</div>
+
+<div *ngIf="!session?.registered">
+  <h2>Anonymous</h2>
+  <a routerLink="/login">Login</a>
+</div>

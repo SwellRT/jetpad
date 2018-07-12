@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sideDrawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>    
+    <h1 class="example-app-name">Pad</h1>
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+    
+    <mat-sidenav #sideDrawer [mode]="over"
+                 [fixedInViewport]="true" fixedTopGap="56">
+      <app-ldrawer></app-ldrawer>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <app-pad-container></app-pad-container>
+    </mat-sidenav-content>
+    
+</mat-sidenav-container>

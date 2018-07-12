@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sideDrawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+  <h1 *ngIf="session?.registered" class="example-app-name">Home ({{session.profile.name}})</h1>
+  <h1 *ngIf="!session?.registered" class="example-app-name">Home (Anonymous)</h1>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sideDrawer [mode]="over"
+                 [fixedInViewport]="true" fixedTopGap="56">
+    <app-ldrawer></app-ldrawer>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+        <form style="margin:auto;" class="form-container" [formGroup]="launchPadForm">
+
+             
+          <mat-form-field appearance="standard" class="field-full-width">
+            <mat-label></mat-label>
+            <input matInput placeholder="" type="text" formControlName="padid" autocomplete="on">        
+            <mat-hint>Existing o new pad id</mat-hint>
+          </mat-form-field>
+
+          <button style="float: right" class="right-margin-sm" mat-raised-button color="primary" (click)="launchPad()">Open or Create Pad</button>
+        
+        </form>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

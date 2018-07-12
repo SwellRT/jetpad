@@ -1,0 +1,27 @@
+<div class="mat-app-background basic-container">
+
+  <div>
+    <button mat-button (click)="goBack()"><mat-icon>close</mat-icon></button>
+  </div>
+
+  <form class="form-container" [formGroup]="loginForm">
+       
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="User Id" type="text"  formControlName="userid" autocomplete="username">
+        <mat-error *ngIf="userid.hasError('required')">Required field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Password" type="password"  formControlName="password" autocomplete="current-password">
+        <mat-error *ngIf="password.hasError('required')">Required field</mat-error>
+        <mat-error *ngIf="password.hasError('minlength')">Password must have at least 8 characters</mat-error>
+      </mat-form-field>
+    
+      <button [disabled]="!loginForm.valid" class="right-margin-sm" mat-button (click)="submitCreate()">Create*</button>
+
+      <button [disabled]="!loginForm.valid" class="right-margin-sm" mat-raised-button color="primary" (click)="submitLogin()">Login</button>
+      
+     
+    </form>
+
+</div>

@@ -16,6 +16,7 @@ if (environment.production) {
 // this ensures that app starts iff swellrt is available.
 window._lh = [
   function(swellApi) {
+    console.log('Bootstrap App Module...');
     platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.log(err));
  } ];
