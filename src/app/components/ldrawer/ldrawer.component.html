@@ -1,12 +1,16 @@
+<div *ngIf="session">
 
+  <div *ngIf="session?.registered">
+    <h2>{{ session.profile.name }}</h2>
+    <p><a routerLink="/home">Home</a></p>  
+    <p><a (click)="logout()">Logout</a></p>
+  </div>
 
-<div *ngIf="session?.registered">
-  <h2>{{ session.profile.name }}</h2>
-  <p><a routerLink="/home">Home</a></p>  
-  <p><a (click)="logout()">Logout</a></p>
+  <div *ngIf="!session?.registered">
+    <h2>Anonymous</h2>
+    <a routerLink="/login">Login</a>
+  </div>
+
 </div>
 
-<div *ngIf="!session?.registered">
-  <h2>Anonymous</h2>
-  <a routerLink="/login">Login</a>
-</div>
+<mat-spinner style="margin: auto; margin-top: 10px;" diameter="40" *ngIf="!session"></mat-spinner>

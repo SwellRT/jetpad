@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class LdrawerComponent implements OnInit, OnDestroy {
 
-  session: any ;
+  session: any;
   private sessionSubscription: Subscription;
 
   constructor(private swellService: SwellService) { }
@@ -17,7 +17,6 @@ export class LdrawerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sessionSubscription =
     this.swellService.session$.subscribe(session => {
-      console.log('home: session update');
       this.session = session;
     });
   }

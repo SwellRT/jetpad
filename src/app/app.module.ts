@@ -62,7 +62,7 @@ import { PadContainerComponent } from './components/pad/pad-container/pad-contai
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'pad', component: PadComponent },
+  { path: 'pad/:id', component: PadComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent }
 ];

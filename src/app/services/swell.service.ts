@@ -14,8 +14,8 @@ export class SwellService  {
 
   private api: any = swell.runtime.get();
 
-  private sessionSubject = new BehaviorSubject<any>({});
-  session$ = this.sessionSubject.asObservable();
+  session$ = new BehaviorSubject<any>(null);
+  object: any; // the current object
 
   constructor(private snackBar: MatSnackBar) {
     this.updateSessionSubject();
@@ -90,7 +90,13 @@ export class SwellService  {
 
   }
 
-
+  /**
+   * Create user account
+   *
+   * @param userid
+   * @param password
+   * @param properties
+   */
   createUser(userid, password, properties) {
     return this.api.createUser({
         id: userid,
@@ -104,16 +110,41 @@ export class SwellService  {
     });
   }
 
+
+  getObject(objectId) {
+
+    // TODO check id syntax
+    return this.api.open({
+      id: objectId
+    })
+    .then( object => {
+
+      // TODO define  meaningful object states for the app
+      if (!object.node('state')) {
+        object.set('state', '_created_');
+
+        if (this.api.profilesManager.getCurrentProfile().anonymous) {
+          object.setPublic(true);
+        }
+      }
+      return object;
+    });
+  }
+
+
+  /**
+   * Propagate session info
+   */
   private updateSessionSubject() {
 
     if (this.api.profilesManager.getCurrentParticipantId())  {
-      this.sessionSubject.next({
+      this.session$.next({
         id: this.api.profilesManager.getCurrentSessionId(),
         profile: this.api.profilesManager.getCurrentProfile(),
         registered: !this.api.profilesManager.getCurrentProfile().anonymous
       });
     } else {
-      this.sessionSubject.next({});
+      this.session$.next(null);
     }
 
 

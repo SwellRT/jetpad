@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { SwellService } from '../../services/swell.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,35 +11,47 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  session: any ;
+  session: any;
   private sessionSubscription: Subscription;
 
   launchPadForm: any;
 
-  constructor(private swellService: SwellService) {
+  launchError = false;
+
+  constructor(
+    private swellService: SwellService,
+    private router: Router) {
   }
 
   ngOnInit() {
+
+    this.launchPadForm = new FormGroup({
+      'padid': new FormControl('', [Validators.required]),
+    });
 
     this.sessionSubscription =
       this.swellService.session$.subscribe(session => {
         this.session = session;
       });
 
-      this.launchPadForm = new FormGroup({
-        'padid': new FormControl('/' + this.swellService.getSwellDomain(), [Validators.required]),
-      });
+
 
   }
 
   ngOnDestroy() {
-      this.sessionSubscription.unsubscribe();
+    this.sessionSubscription.unsubscribe();
   }
 
   launchPad() {
-
+    this.swellService.getObject(this.padid.value)
+    .then( object => {
+      this.router.navigate(['/pad', object.id]);
+    })
+    .catch( err => {
+      this.launchError = true;
+    });
   }
 
-
+  get padid() { return this.launchPadForm.get('padid'); }
 
 }
