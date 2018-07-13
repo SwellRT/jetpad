@@ -15,7 +15,7 @@ export class PadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private objectSubscription: Subscription;
   object: any;
-
+  name: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +29,8 @@ export class PadComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.route.paramMap.subscribe( params => {
-      this.padService.init(params.get('id'));
+      this.name = params.get('name');
+      this.padService.init(this.name);
     });
   }
 

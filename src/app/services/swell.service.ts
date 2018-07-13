@@ -155,6 +155,11 @@ export class SwellService  {
       })
   }
 
+  getObjectNames(name) {
+    return this.api.getObjectNames({ name: name })
+             .then( response => { return response } );
+  }
+
 
   /**
    * Propagate session info

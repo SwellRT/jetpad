@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.swellService.getObject(name)
     .then( object => {
       this.swellService.setObjectName(object.id, name)
-      this.router.navigate(['/pad', object.id]);
+      this.router.navigate(['/pad', name]);
     })
     .catch( err => {
       this.launchError = true;
