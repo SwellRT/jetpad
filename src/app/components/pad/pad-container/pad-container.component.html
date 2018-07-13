@@ -7,7 +7,15 @@
     <mat-drawer-content>
       <div>here the toolbar</div>      
       <!-- it looks like if content is actually empty side drawers are not rendered neither!!! -->
-      <div id="main-pad" #mainPad>        
+      <div id="main-pad" #mainPad 
+        style="
+          min-width: 400px;
+          overflow-x: hidden;
+          border-color: aqua;
+          border-style: solid;
+          border-width: 1px;
+          height: 800px;
+          overflow-y: auto;">        
       </div>
     </mat-drawer-content>
 

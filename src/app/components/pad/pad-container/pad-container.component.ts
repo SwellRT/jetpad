@@ -13,7 +13,7 @@ export class PadContainerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private objectSubscription: Subscription;
 
-  constructor(private padService: PadService) { }
+  constructor(private padService: PadService) {}
 
   ngOnInit() {
     console.log('PadContainer ngOnInit()');
@@ -25,9 +25,11 @@ export class PadContainerComponent implements OnInit, OnDestroy, AfterViewInit {
     this.objectSubscription = this.padService.object$.subscribe( (object) => {
 
       if (object) {
-        object.node('pads.main').attachToDOM(this.mainPadRef.nativeElement);
+        this.padService.editor.set(object.node('pads.main'));
+        this.padService.editor.attachToDOM(this.mainPadRef.nativeElement);
+        this.padService.editor.edit(true);
       } else {
-        // TODO clear view
+        this.padService.editor.clean();
       }
 
     });

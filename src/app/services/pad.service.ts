@@ -13,12 +13,21 @@ export class PadService {
 
   private session;
 
+  /** swell's text editor instance. To be used from UI componentes.  */
+  editor: any;
+
   /** null values, cold */
   object$ = new Subject<any>();
   object: any;
 
   constructor(private swellService: SwellService) {
     console.log('PadService constructor()');
+
+    swell.Editor.configure({
+      traceUserAgent: true
+      // caretFactory: function() { return new Caret(); }
+    });
+    this.editor = swell.Editor.create();
   }
 
   /**
@@ -36,6 +45,10 @@ export class PadService {
    * @param objectId
    */
   init(objectId) {
+
+    if (this.editor.hasDocument()) {
+      this.editor.clean();
+    }
 
     if (this.session) {
       this.loadObject(objectId);
