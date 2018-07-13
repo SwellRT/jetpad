@@ -14,11 +14,27 @@ export class SwellService  {
 
   private api: any = swell.runtime.get();
 
+  /** nullable, hot */
   session$ = new BehaviorSubject<any>(null);
+
+  /** hot */
+  status$ = new BehaviorSubject<string>(swell.Constants.STATUS_DISCONNECTED);
+  statusError = null;
+
   object: any; // the current object
 
   constructor(private snackBar: MatSnackBar) {
     this.updateSessionSubject();
+
+    this.api.addConnectionHandler((status, err) => {
+      this.status$.next(status);
+      this.statusError = err;
+      console.log('Swell status ' + status);
+      if (err) {
+        console.log(err);
+      }
+    });
+
   }
 
   getSwellDomain() {

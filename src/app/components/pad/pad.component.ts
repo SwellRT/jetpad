@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SwellService } from '../../services/swell.service';
 import { switchMap, filter } from 'rxjs/operators';
@@ -10,49 +10,36 @@ import { Subscription } from 'rxjs';
   templateUrl: './pad.component.html',
   styleUrls: ['./pad.component.css']
 })
-export class PadComponent implements OnInit, OnDestroy {
+export class PadComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  private sessionSubscription: Subscription;
-  session: any;
 
   private objectSubscription: Subscription;
   object: any;
 
-  objectId;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private padService: PadService,
-    private swellService: SwellService) {}
+    private padService: PadService) {}
 
   ngOnInit() {
-
+    console.log('Pad ngOnInit()');
     this.objectSubscription = this.padService.object$.subscribe( (object) => {
       this.object = object;
     });
 
-    // we init the pad service with the object id param iff session is ready.
-    let id: string;
-    this.sessionSubscription = this.route.paramMap.pipe( switchMap( (params: ParamMap) => {
-
-      id = params.get('id');
-      return this.swellService.session$;
-
-    })).subscribe( session => {
-
-        if (session) {
-          this.session = session;
-          this.padService.init(id);
-        }
-
+    this.route.paramMap.subscribe( params => {
+      this.padService.init(params.get('id'));
     });
+  }
 
+  ngAfterViewInit() {
+    console.log('Pad ngAfterViewInit()');
   }
 
   ngOnDestroy() {
+    console.log('Pad ngOnDestroy()');
     this.objectSubscription.unsubscribe();
-    this.sessionSubscription.unsubscribe();
   }
 
 }

@@ -3,9 +3,12 @@
     <mat-drawer mode="side" opened position="start">Left Drawer</mat-drawer>
     <mat-drawer mode="side" opened position="end">Right Drawer</mat-drawer>
     
+    
     <mat-drawer-content>
-      <div>Here editor toolbar component</div>
-      <div>Here editor canvas component</div>
+      <div>here the toolbar</div>      
+      <!-- it looks like if content is actually empty side drawers are not rendered neither!!! -->
+      <div id="main-pad" #mainPad>        
+      </div>
     </mat-drawer-content>
 
-  </mat-drawer-container>
+</mat-drawer-container>
