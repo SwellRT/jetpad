@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   swellrt: {
-    url: 'http://localhost:9898/swellrt_beta/swellrt_beta.nocache.js'
+    url: 'http://192.168.1.79:9898/swellrt_beta/swellrt_beta.nocache.js'
   }
 };
 

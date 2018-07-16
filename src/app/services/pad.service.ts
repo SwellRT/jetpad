@@ -21,8 +21,6 @@ export class PadService {
   object: any;
 
   constructor(private swellService: SwellService) {
-    console.log('PadService constructor()');
-
     swell.Editor.configure({
       traceUserAgent: true
       // caretFactory: function() { return new Caret(); }

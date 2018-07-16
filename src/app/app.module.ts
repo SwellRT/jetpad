@@ -58,6 +58,7 @@ import { SwellService } from './services/swell.service';
 import { LandingComponent } from './components/landing/landing.component';
 import { LdrawerComponent } from './components/ldrawer/ldrawer.component';
 import { PadContainerComponent } from './components/pad/pad-container/pad-container.component';
+import { BottomDrawerComponent } from './components/pad/bottom-drawer/bottom-drawer.component';
 
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
@@ -108,7 +109,7 @@ const appRoutes: Routes = [
     MatTooltipModule,
     MatTreeModule,
   ],
-  declarations: []
+  declarations: [BottomDrawerComponent]
 })
 export class AngularMaterialModule {}
 

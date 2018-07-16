@@ -1,0 +1,29 @@
+
+.pad-content-lg {
+    margin: auto;
+    width: 800px;
+}
+
+.pad-content-md {
+    margin: auto;
+    width: 800px;
+}
+
+
+.pad-content-sm {
+    margin: auto;
+    width: 100%;
+}
+
+.footer-menu {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    background-color: red;
+}
+
+.footer-menu-content {
+    margin: auto;
+}

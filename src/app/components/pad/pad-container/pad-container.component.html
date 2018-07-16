@@ -1,22 +1,46 @@
 <mat-drawer-container>
 
-    <mat-drawer mode="side" opened position="start">Left Drawer</mat-drawer>
-    <mat-drawer mode="side" opened position="end">Right Drawer</mat-drawer>
+    <mat-drawer 
+    [style.width]="drawerLayout.width"
+    [mode]="drawerLayout.mode" 
+    [(opened)]="drawerLayout.left.opened"
+    position="start">
+    Left Drawer
+    </mat-drawer>
+    
+    
+    <mat-drawer 
+    [style.width]="drawerLayout.width"
+    [mode]="drawerLayout.mode" 
+    [(opened)]="drawerLayout.right.opened"    
+    position="end">
+    Right Drawer
+    </mat-drawer>
+    
     
     
     <mat-drawer-content>
-      <div>here the toolbar</div>      
+      <div [class]="contentLayout.class">
+        here the toolbar
+      </div>      
       <!-- it looks like if content is actually empty side drawers are not rendered neither!!! -->
-      <div id="main-pad" #mainPad 
-        style="
-          min-width: 400px;
-          overflow-x: hidden;
-          border-color: aqua;
-          border-style: solid;
-          border-width: 1px;
-          height: 800px;
-          overflow-y: auto;">        
+      <div id="main-pad" #mainPad
+        [class]="contentLayout.class">
       </div>
     </mat-drawer-content>
 
 </mat-drawer-container>
+
+<div class="footer-menu" *ngIf="media != 'lg' && showFooter">
+  <div class="footer-menu-content" *ngIf="bottomMenu == 'default'">
+
+      <button mat-icon-button (click)="showOutline()">
+          <mat-icon>list</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="showComments()">
+          <mat-icon>mode_comment</mat-icon>
+      </button>   
+
+  </div>
+</div>

@@ -23,7 +23,6 @@ export class PadComponent implements OnInit, OnDestroy, AfterViewInit {
     private padService: PadService) {}
 
   ngOnInit() {
-    console.log('Pad ngOnInit()');
     this.objectSubscription = this.padService.object$.subscribe( (object) => {
       this.object = object;
     });
@@ -34,11 +33,9 @@ export class PadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('Pad ngAfterViewInit()');
   }
 
   ngOnDestroy() {
-    console.log('Pad ngOnDestroy()');
     this.objectSubscription.unsubscribe();
   }
 
