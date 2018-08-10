@@ -40,25 +40,32 @@ export class PadService {
    * with this service. Hence, changes in session would happen
    * after destroying the view and cleaning the service.
    *
-   * @param objectId
+   * @param name
    */
-  init(objectId) {
+  init(name) {
+    // get the id from the name
+    this.swellService.getObjectNames(name)
+    .then( response => {
+      let names_json = JSON.parse(JSON.stringify(response));
+      let objectId = names_json['waveId']['domain'].concat('/').concat(names_json['waveId']['id']);
 
-    if (this.editor.hasDocument()) {
-      this.editor.clean();
-    }
+      if (this.editor.hasDocument()) {
+        this.editor.clean();
+      }
 
-    if (this.session) {
-      this.loadObject(objectId);
-    } else {
-      // we must wait for the swell session
-      this.swellService.session$.pipe(first( val => val != null))
-      .subscribe(session => {
-          this.session = session;
-          this.loadObject(objectId);
-      });
+      if (this.session) {
+        this.loadObject(objectId);
+      } else {
+        // we must wait for the swell session
+        this.swellService.session$.pipe(first( val => val != null))
+        .subscribe(session => {
+            this.session = session;
+            this.loadObject(objectId);
+        });
 
-    }
+      }
+
+    });
 
   }
 

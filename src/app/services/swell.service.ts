@@ -147,6 +147,19 @@ export class SwellService  {
     });
   }
 
+  setObjectName(objectId, name) {
+    this.api.setObjectName(
+      {
+        id: objectId,
+        name: name
+      })
+  }
+
+  getObjectNames(name) {
+    return this.api.getObjectNames({ name: name })
+             .then( response => { return response } );
+  }
+
 
   /**
    * Propagate session info

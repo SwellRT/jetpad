@@ -63,7 +63,7 @@ import { BottomDrawerComponent } from './components/pad/bottom-drawer/bottom-dra
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'pad/:id', component: PadComponent },
+  { path: 'pad/:name', component: PadComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent }
 ];
